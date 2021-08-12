@@ -1,7 +1,7 @@
 #install.packages("CMplot")
 setwd("/home/baign/HPC/Project")
 library("CMplot")
-annot <- read.csv("head.txt", header=TRUE,sep="\t")
+annot <- read.csv("test.txt", header=TRUE,sep="\t")
 
 ##plotting snp density plot
 CMplot(annot,type="p",plot.type="d",bin.size=25000,chr.den.col=c("darkgreen", "yellow", "red"),file="pdf",memo="",

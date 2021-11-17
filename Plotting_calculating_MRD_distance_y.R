@@ -43,25 +43,15 @@ pcoa1.data=pcoa1.data%>%
   tibble::rownames_to_column(var="Genotypes")
 pcoa1.data
 
-ggsave("year.pdf",height=8,width=9)
-theme_classic<-theme(panel.background = element_blank(),panel.border=element_rect(fill=NA),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),strip.background=element_blank(),axis.text.x=element_text(colour="black"),axis.text.y=element_text(colour="black"),axis.ticks=element_line(colour="black"),plot.margin=unit(c(1,1,1,1),"line"))
-pc <- ggplot(pcoa1.data, aes(x = X, y = Y, colour = Year,label=row.names(pcoa1.data)))
-pc1=pc+geom_point(size=1)
-pc1=pc1+geom_label_repel(
-  aes(label=ifelse(Genotypes %in% c("S_spegazzini","S_gourlayi","P40","H98D12","S_vernei","S_hawkesianum","S_sparsipilum","H80_577_1"), Genotypes , ''))
-  , size=2
-  , max.overlaps = 40
-  , alpha=0.8
-  ,label.padding=unit(0.25,"lines")
-  , label.size=0.22)+
-#pc1=pc1+scale_x_continuous(limits = c(-0.05,0.10)) 
-#pc1=pc1+scale_y_continuous(limits = c(-0.04,0.10))+
-theme_classic+
+pdf('New_ploidy.pdf',width=8,height=8)
+theme_classic<-theme(panel.background = element_blank(),panel.border=element_rect(fill=NA),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),strip.background=element_blank(),axis.text.x=element_text(colour="black",size=5),axis.text.y=element_text(colour="black",size=5),axis.ticks=element_line(colour="black",size=5),plot.margin=unit(c(1,1,1,1),"line"),text = element_text(size = 27))
+
+labels.clone <- c("S_spegazzini","S_gourlayi","P40","H98D12","S_vernei","S_hawkesianum","S_sparsipilum","H80_577_1")
+pc3 <- ggplot(pcoa1.data, aes(x = X, y = Y, colour =Ploidy ,shape=Ploidy,label=row.names(pcoa1.data)))+geom_point(size=1)+
+  geom_label_repel(aes(label=ifelse(Genotypes %in% labels.clone, Genotypes , '')), size=4.2, max.overlaps =45, alpha=1, label.padding=unit(0.25,"lines"), label.size=0.3)+
   labs(
     x = paste0("PCoA 1 (",pcoa.var.per[1]," %)"),
     y = paste0("PCoA 2 (",pcoa.var.per[2]," %)"))
-
-#pc1+theme(legend.position = "bottom")+
-pc1+guides(color = guide_legend(override.aes = list(size = 2.5),ncol=3 ))
-
+pc3=pc3+theme_classic()
+pc3
 dev.off()

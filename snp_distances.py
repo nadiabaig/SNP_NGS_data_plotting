@@ -1,10 +1,20 @@
+#!/usr/bin/env python
+
+##Calculate distance between SNPs
+##Note: extract Chr, position columns from  your vcf file in a tab delimited format using samtools or using some bash commands.
+##Nadia Baig##
+##Institute of Quantitative genetics and Genomics for plants- HHU##
+
+
 import stats
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import commands
+import sys
 
-
-fr=open('un_s.txt','r')
+the_input= sys.argv[1]
+fr=open(the_input,'r')   #un_s.txt  
 a=fr.read()
 aa=a.split("\n")[:-1]
 listname=[]

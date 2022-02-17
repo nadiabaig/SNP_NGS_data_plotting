@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 ##Calculate distance between SNPs
-##Note: extract Chr, position columns from  your vcf file in a tab delimited format using samtools or using some bash commands.
+##Note: extract Chr, position columns from  your vcf file in a comma seprated format using samtools or using some bash commands.
 ##Nadia Baig##
 ##Institute of Quantitative genetics and Genomics for plants- HHU##
 
